@@ -30,7 +30,7 @@ const App = () => {
   // Fetch the exchange rate whenever the selected currency changes
   useEffect(() => {
     fetch(
-      `https://openexchangerates.org/api/latest.json?app_id=YOUR_API_KEY`
+      `https://openexchangerates.org/api/latest.json?app_id=Y3ca224730bff4743b6a824fc62862764`
     )
       .then((response) => response.json())
       .then((data) => {
