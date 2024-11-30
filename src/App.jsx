@@ -31,7 +31,7 @@ const App = () => {
   // Fetch the exchange rate whenever the selected currency changes
   useEffect(() => {
     fetch(
-      `https://openexchangerates.org/api/latest.json?app_id=YOUR_API_KEY`
+      `https://openexchangerates.org/api/latest.json?app_id=Y3ca224730bff4743b6a824fc62862764`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -81,7 +81,6 @@ const App = () => {
       }
     }, [fullQuote]);
   
-
   return (
     <>
       <h2>Stock Price in Selected Currency</h2>
@@ -130,7 +129,27 @@ const App = () => {
   const [stockSymbol, setStockSymbol] = useState("");
   const [exchangeRate, setExchangeRate] = useState(null);
   const [currency, setCurrency] = useState("USD"); // Default to USD
-  const [currencies, setCurrencies] = useState([]); // Holds all currency options
+  const [currencies, setCurrencies] = useState([]); // Holds all currency option
+
+  // Fetch the stock price whenever the stock symbol changes
+  useEffect(() => {
+    if (stockSymbol) {
+      fetch(
+        `https://financialmodelingprep.com/api/v3/search?query=${stockSymbol}&limit=10&apikey=tK2nptCqhHn1nzSH6gVvvj2orgAIqUCH`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.length > 0) {
+            setStockPrice(data[0].price);
+          } else {
+            setStockPrice(null);
+          }
+        })
+        .catch((error) =>
+          console.error("Unable to fetch stock price:", error)
+        );
+    }
+  }, [stockSymbol]);
 
   // Fetch the stock price whenever the stock symbol changes
   useEffect(() => {
