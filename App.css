@@ -1,0 +1,81 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-top: 2rem;
+  font-weight: bold;
+}
+
+select, input {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+select:focus, input:focus {
+  border-color: #068438;
+  outline: none;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #333;
+}
+
+option {
+  font-size: 1rem;
+}
+
+/* Stock details section */
+div > div {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #068438;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+strong {
+  color: #333;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Loading states */
+p {
+  font-style: italic;
+  color: #888;
+}
+
