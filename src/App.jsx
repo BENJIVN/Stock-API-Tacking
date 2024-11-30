@@ -6,6 +6,7 @@ const App = () => {
   const [exchangeRate, setExchangeRate] = useState(1); // Default to 1 (USD to USD)
   const [currency, setCurrency] = useState("USD"); // Default to USD
   const [currencies, setCurrencies] = useState([]); // Holds all currency options
+  const [fullQuote, setFullQuote] = useState(null); 
 
   // Fetch the stock price in USD whenever the stock symbol changes
   useEffect(() => {
@@ -61,6 +62,25 @@ const App = () => {
   const stockPriceInCurrency =
     stockPriceUSD !== null ? (stockPriceUSD * exchangeRate).toFixed(2) : null;
 
+    useEffect(() => {
+      if (fullQuote) {
+        fetch(
+          `https://financialmodelingprep.com/api/v3/quote/AAPL?apikey=0TkE4OLaR7y4D935kMqMaPJioF26kGj3`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data && data.length > 0) {
+              setFullQuote(data[0].price); // Set stock price in USD
+            } else {
+              setFullQuote(null);
+            }
+          })
+          .catch((error) =>
+            console.error("Unable to fetch stock price:", error)
+          );
+      }
+    }, [fullQuote]);
+  
   return (
     <>
       <h2>Stock Price in Selected Currency</h2>
@@ -109,7 +129,27 @@ const App = () => {
   const [stockSymbol, setStockSymbol] = useState("");
   const [exchangeRate, setExchangeRate] = useState(null);
   const [currency, setCurrency] = useState("USD"); // Default to USD
-  const [currencies, setCurrencies] = useState([]); // Holds all currency options
+  const [currencies, setCurrencies] = useState([]); // Holds all currency option
+
+  // Fetch the stock price whenever the stock symbol changes
+  useEffect(() => {
+    if (stockSymbol) {
+      fetch(
+        `https://financialmodelingprep.com/api/v3/search?query=${stockSymbol}&limit=10&apikey=tK2nptCqhHn1nzSH6gVvvj2orgAIqUCH`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.length > 0) {
+            setStockPrice(data[0].price);
+          } else {
+            setStockPrice(null);
+          }
+        })
+        .catch((error) =>
+          console.error("Unable to fetch stock price:", error)
+        );
+    }
+  }, [stockSymbol]);
 
   // Fetch the stock price whenever the stock symbol changes
   useEffect(() => {
@@ -256,3 +296,4 @@ export default App;
   // )
   8/
   */
+
