@@ -19,7 +19,6 @@ const App = () => {
       );
   }, []);
 
-
   const fetchFullQuote = (symbol) => {
     fetch(
       `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=tK2nptCqhHn1nzSH6gVvvj2orgAIqUCH`
@@ -41,9 +40,8 @@ const App = () => {
   return (
     <>
     <Header />
-      <h2>Stock Details</h2>
       <div>
-        <label htmlFor="stock">Select a Stock:</label>
+        <label htmlFor="stock">Select a Stock from the dropdown menu:</label>
         <select
           id="stock"
           onChange={(e) => handleStockSelection(e.target.value)}
