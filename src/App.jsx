@@ -12,7 +12,11 @@ const App = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setStockList(data.slice(0, 100)); 
+        const filteredStocks = data.filter(
+          (stock) =>
+            stock.exchangeShortName === "NASDAQ" || stock.exchangeShortName === "NYSE"
+        );
+        setStockList(filteredStocks.slice(0, 100));  
       })
       .catch((error) =>
         console.error("Unable to fetch stock list:", error)
@@ -25,12 +29,12 @@ const App = () => {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log("Full quote response:", data); 
         setFullQuote(data[0]); 
       })
       .catch((error) => console.error("Unable to fetch full quote:", error));
   };
 
-  // Handle dropdown selection
   const handleStockSelection = (symbol) => {
     const stock = stockList.find((s) => s.symbol === symbol);
     setSelectedStock(stock); 
